@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Notificações</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📬 Central de Notificações</h1>
+            <div class="user-info">
+                <p id="userIdDisplay"></p>
+                <span class="status-indicator" id="statusIndicator"></span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="notifications-section">
+                <div class="section-header">
+                    <h2>Suas Notificações</h2>
+                    <div class="controls">
+                        <span class="badge unread-badge" id="unreadCount">0</span>
+                        <button id="clearAllBtn" class="btn-clear">Limpar historico</button>
+                    </div>
+                </div>
+
+                <div id="notifList" class="notification-list">
+                    <p class="empty-state">Aguardando notificações...</p>
+                </div>
+            </section>
+
+            <aside class="info-panel">
+                <h3>ℹ️ Informações</h3>
+                <p>
+                    <strong>Como funciona:</strong>
+                </p>
+                <ul>
+                    <li>✅ Clique em uma notificação para marcar como lida</li>
+                    <li>🔔 Sons e animações ao receber novas</li>
+                    <li>📊 Histórico de todas as notificações</li>
+                    <li>👥 Suporta múltiplos usuários</li>
+                </ul>
+                <hr>
+                <p>
+                    <a href="admin.html" class="admin-link">→ Ir para Painel Admin</a>
+                </p>
+            </aside>
+        </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
