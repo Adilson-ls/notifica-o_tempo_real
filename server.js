@@ -142,6 +142,21 @@ app.post('/auth/forgot-password', async (req, res) => {
     }
 });
 
+// Admin reset-password (protegido) - atualizar senha de um usuário pelo admin
+app.post('/auth/reset-password-admin', verifyToken, verifyAdmin, async (req, res) => {
+    const { userId, newPassword } = req.body;
+    if (!userId || !newPassword) return res.status(400).json({ success: false, error: 'userId and newPassword required' });
+
+    try {
+        const { data, error } = await adminSupabase.auth.admin.updateUserById(userId, { password: newPassword });
+        if (error) return res.status(400).json({ success: false, error: error.message });
+        return res.json({ success: true, user: data.user });
+    } catch (err) {
+        console.error('reset-password-admin error', err.message || err);
+        return res.status(500).json({ success: false, error: 'Server error' });
+    }
+});
+
 // Rota para obter histórico de notificações (opcional)
 app.get('/api/notifications', (req, res) => {
     res.json(notifications);
