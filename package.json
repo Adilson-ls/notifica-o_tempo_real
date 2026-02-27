@@ -9,11 +9,15 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "socket.io": "^4.5.4",
-    "cors": "^2.8.5",
     "@supabase/supabase-js": "^2.38.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "express-session": "^1.17.3"
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "socket.io": "^4.5.4"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "supertest": "^7.2.2"
   }
 }

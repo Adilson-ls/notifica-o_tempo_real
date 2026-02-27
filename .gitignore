@@ -1,0 +1,36 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+logs/
+*.log
+
+# Env files
+.env
+.env.*
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# MacOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Build outputs
+dist/
+build/
+
+# Temporary
+*.tmp
+
+# Test coverage
+coverage/
+
+# Ignore database file if exists
+*.sqlite

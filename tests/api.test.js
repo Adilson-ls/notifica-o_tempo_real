@@ -1,5 +1,6 @@
 const request = require('supertest');
-const app = require('../server');
+
+// Tests assume server is already running on http://localhost:3000
 
 describe('API basic endpoints', () => {
   it('GET /api/notifications should return 200 and array', async () => {

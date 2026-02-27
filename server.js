@@ -7,7 +7,17 @@ const { createClient } = require('@supabase/supabase-js');
 const supabase = require('./supabase-client');
 
 // Admin client (service role) - usado para operações administrativas
-const adminSupabase = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_SERVICE_ROLE_KEY || '');
+let adminSupabase = null;
+if (process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    try {
+        adminSupabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+    } catch (e) {
+        console.warn('⚠️  Não foi possível criar adminSupabase:', e.message || e);
+        adminSupabase = null;
+    }
+} else {
+    console.warn('⚠️  SUPABASE_URL ou SUPABASE_SERVICE_ROLE_KEY não configuradas - admin operations disabled');
+}
 
 const app = express();
 const server = http.createServer(app);
@@ -94,6 +104,8 @@ app.post('/auth/signup', async (req, res) => {
     if (!email || !password) return res.status(400).json({ success: false, error: 'Email and password required' });
 
     try {
+        if (!adminSupabase) return res.status(500).json({ success: false, error: 'Admin Supabase not configured' });
+
         const { data, error } = await adminSupabase.auth.admin.createUser({
             email: email,
             password: password,
@@ -148,6 +160,8 @@ app.post('/auth/reset-password-admin', verifyToken, verifyAdmin, async (req, res
     if (!userId || !newPassword) return res.status(400).json({ success: false, error: 'userId and newPassword required' });
 
     try {
+        if (!adminSupabase) return res.status(500).json({ success: false, error: 'Admin Supabase not configured' });
+
         const { data, error } = await adminSupabase.auth.admin.updateUserById(userId, { password: newPassword });
         if (error) return res.status(400).json({ success: false, error: error.message });
         return res.json({ success: true, user: data.user });
