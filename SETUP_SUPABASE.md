@@ -70,7 +70,7 @@ cp .env.example .env
 SUPABASE_URL=https://seu-projeto.supabase.co
 SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 SUPABASE_SERVICE_ROLE_KEY=seu-service-role-key-aqui
-SESSION_SECRET=uma-chave-secreta-aleatorica-bem-longa-aqui
+SESSION_SECRET=
 ```
 
 ### Passo 3: Armazenar Credenciais no localStorage
