@@ -11,8 +11,11 @@
         <header class="header">
             <h1>📬 Central de Notificações</h1>
             <div class="user-info">
-                <p id="userIdDisplay"></p>
-                <span class="status-indicator" id="statusIndicator"></span>
+                <div class="user-details">
+                    <p id="userEmailDisplay">Não autenticado</p>
+                    <span class="status-indicator" id="statusIndicator"></span>
+                </div>
+                <button id="logoutBtn" class="btn-logout" onclick="logoutUser()">Sair</button>
             </div>
         </header>
 
@@ -44,13 +47,49 @@
                 </ul>
                 <hr>
                 <p>
+                    <strong>Usuário Autenticado:</strong><br>
+                    <span id="userEmailInfo">Carregando...</span>
+                </p>
+                <hr>
+                <p>
                     <a href="admin.html" class="admin-link">→ Ir para Painel Admin</a>
                 </p>
             </aside>
         </main>
     </div>
 
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.0"></script>
+    <!-- Auth Scripts -->
+    <script src="auth-scripts.js"></script>
+    <!-- Socket.io and Client -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
+    <!-- Auth Check -->
+    <script>
+        // Check if user is authenticated
+        window.addEventListener('load', () => {
+            const authToken = localStorage.getItem('auth_token');
+            const userEmail = localStorage.getItem('user_email');
+            const userId = localStorage.getItem('user_id');
+            
+            if (!authToken || !userEmail) {
+                // Redirect to login if not authenticated
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Display user email
+            const userEmailDisplay = document.getElementById('userEmailDisplay');
+            const userEmailInfo = document.getElementById('userEmailInfo');
+            
+            if (userEmailDisplay) userEmailDisplay.textContent = userEmail;
+            if (userEmailInfo) userEmailInfo.textContent = userEmail;
+            
+            // Update user ID display for notifications
+            const userIdDisplay = document.getElementById('userIdDisplay');
+            if (userIdDisplay) userIdDisplay.textContent = `ID: ${userId.substring(0, 8)}...`;
+        });
+    </script>
 </body>
 </html>

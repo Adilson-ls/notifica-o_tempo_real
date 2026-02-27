@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Central de Notificações</title>
+    <link rel="stylesheet" href="auth-style.css">
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.0"></script>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h1>📬 Central de Notificações</h1>
+                <p>Bem-vindo de volta</p>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password"
+                        placeholder="Sua senha segura"
+                        required
+                    >
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        Lembrar-me
+                    </label>
+                    <a href="forgot-password.html">Esqueceu a senha?</a>
+                </div>
+
+                <button type="submit" class="btn-auth" id="loginBtn">
+                    <span id="btnText">Entrar</span>
+                    <span id="btnLoader" style="display: none;">⏳ Carregando...</span>
+                </button>
+
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+                <div id="successMessage" class="success-message" style="display: none;"></div>
+            </form>
+
+            <div class="auth-footer">
+                <p>Não tem conta? <a href="signup.html">Crie uma agora</a></p>
+            </div>
+
+            <div class="demo-box">
+                <p>🧪 <strong>Teste demo:</strong></p>
+                <p>Email: <code>demo@example.com</code></p>
+                <p>Senha: <code>Demo@12345</code></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth-scripts.js"></script>
+</body>
+</html>

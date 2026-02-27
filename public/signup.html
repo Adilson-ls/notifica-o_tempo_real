@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Central de Notificações</title>
+    <link rel="stylesheet" href="auth-style.css">
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.0"></script>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h1>📬 Central de Notificações</h1>
+                <p>Crie sua conta</p>
+            </div>
+
+            <form id="signupForm" class="auth-form">
+                <div class="form-group">
+                    <label for="fullname">Nome Completo</label>
+                    <input 
+                        type="text" 
+                        id="fullname" 
+                        name="fullname"
+                        placeholder="Seu nome completo"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password"
+                        placeholder="Mínimo 8 caracteres"
+                        minlength="8"
+                        required
+                    >
+                    <small>Mínimo 8 caracteres, com pelo menos 1 letra maiúscula e 1 número</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar Senha</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword"
+                        placeholder="Repita sua senha"
+                        required
+                    >
+                </div>
+
+                <div class="form-group terms">
+                    <label>
+                        <input type="checkbox" name="terms" required>
+                        Concordo com os <a href="#" target="_blank">Termos de Serviço</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-auth" id="signupBtn">
+                    <span id="btnText">Criar Conta</span>
+                    <span id="btnLoader" style="display: none;">⏳ Criando...</span>
+                </button>
+
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+                <div id="successMessage" class="success-message" style="display: none;"></div>
+            </form>
+
+            <div class="auth-footer">
+                <p>Já tem conta? <a href="login.html">Faça login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth-scripts.js"></script>
+</body>
+</html>

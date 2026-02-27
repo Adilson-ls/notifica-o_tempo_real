@@ -2,11 +2,16 @@
 
 const socket = io();
 
-// Gerar ID aleatório para simular usuário
-const myUserId = "user" + Math.floor(Math.random() * 10000);
-document.getElementById('userIdDisplay').innerText = `👤 ${myUserId}`;
+// Identificar usuário autenticado (armazenado pelo fluxo de login)
+const storedUserId = localStorage.getItem('user_id');
+const storedUserEmail = localStorage.getItem('user_email');
+const myUserId = storedUserId || `anon_${Date.now()}`;
 
-// Registrar no servidor
+// Mostrar email do usuário no header (se existir)
+const userEmailDisplayEl = document.getElementById('userEmailDisplay');
+if (userEmailDisplayEl) userEmailDisplayEl.innerText = `👤 ${storedUserEmail || 'Convidado'}`;
+
+// Registrar no servidor com o ID real do usuário
 socket.emit('register', myUserId);
 
 // ====== ESTADO ======
